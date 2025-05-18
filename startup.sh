@@ -10,5 +10,6 @@ php /home/site/wwwroot/artisan storage:link
 
 # Optimize
 php /home/site/wwwroot/artisan optimize
+php /home/site/wwwroot/artisan filament:optimize
 
 php /home/site/wwwroot/artisan up
