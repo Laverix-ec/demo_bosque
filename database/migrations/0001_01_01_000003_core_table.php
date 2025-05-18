@@ -24,6 +24,14 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('tenants', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('commercial_units', function (Blueprint $table) {
             $table->id();
             $table->string('zone');
@@ -36,14 +44,6 @@ return new class extends Migration
             $table->foreignId('tenant_id')->nullable()->constrained('tenants');
             $table->foreignId('co_tenant_id')->nullable()->constrained('tenants');
 
-            $table->timestamps();
-        });
-
-        Schema::create('tenants', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
             $table->timestamps();
         });
 
