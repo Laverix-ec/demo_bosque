@@ -2,6 +2,9 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\ContactStatsOverview;
+use App\Filament\Widgets\ContractsChart;
+use App\Filament\Widgets\StatsOverview;
 use Filament\Http\Middleware\Authenticate;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -42,12 +45,13 @@ class AdminPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                //Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                StatsOverview::class,
+                ContractsChart::class,
+                ContactStatsOverview::class
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -75,14 +79,14 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->navigationGroups([
                 NavigationGroup::make()
-                    ->label(fn (): string => 'Contratos')
-                    ->icon('heroicon-c-clipboard-document-check'),
-                NavigationGroup::make()
-                    ->label(fn (): string => 'Administración')
+                    ->label(fn (): string => 'Gestión Comercial')
                     ->icon('heroicon-o-sparkles'),
                 NavigationGroup::make()
                     ->label(fn (): string => 'Configuración')
                     ->icon('heroicon-o-cog-6-tooth'),
+                NavigationGroup::make()
+                    ->label(fn (): string => 'Seguridad')
+                    ->icon('heroicon-o-shield-check'),
             ]);
     }
 }

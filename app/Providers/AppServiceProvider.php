@@ -4,12 +4,16 @@ namespace App\Providers;
 
 use App\Policies\ActivityPolicy;
 use BezhanSalleh\FilamentShield\FilamentShield;
+use Filament\Support\Facades\FilamentAsset;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Activitylog\Models\Activity;
+use Filament\Support\Assets\Js;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->configureHttpsRequests();
+
         $this->configurePolicies();
 
         $this->configureDB();
@@ -31,6 +37,14 @@ class AppServiceProvider extends ServiceProvider
         $this->configureModels();
 
         $this->configureFilament();
+    }
+
+    private function configureHttpsRequests()
+    {
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+            request()->server->set('HTTPS', request()->header('X-Forwarded-Proto', 'https') == 'https' ? 'on' : 'off');
+        }
     }
 
     private function configurePolicies(): void
@@ -56,6 +70,10 @@ class AppServiceProvider extends ServiceProvider
     {
         FilamentShield::prohibitDestructiveCommands($this->app->isProduction());
 
-        Table::configureUsing(fn (Table $table) => $table->paginationPageOptions([10, 25, 50]));
+        Table::configureUsing(fn(Table $table) => $table->paginationPageOptions([10, 25, 50]));
+
+        FilamentAsset::register([
+            Js::make('chart-js-plugins', Vite::asset('resources/js/filament-chart-js-plugins.js'))->module(),
+        ]);
     }
 }

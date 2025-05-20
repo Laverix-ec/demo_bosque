@@ -55,7 +55,7 @@ return new class extends Migration
 
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->string('contract_number')->unique();
+            $table->string('contract_number');
             $table->string('contract_object');
             $table->foreignId('internal_admin_id')->constrained('users');
             $table->foreignId('department_id')->constrained('departments');

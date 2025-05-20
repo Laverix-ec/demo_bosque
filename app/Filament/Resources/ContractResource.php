@@ -4,24 +4,19 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ContractResource\Pages;
 use App\Filament\Resources\ContractResource\RelationManagers;
-use App\Imports\ContractsImport;
 use App\Models\Contract;
-use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ContractResource extends Resource
 {
     protected static ?string $model = Contract::class;
 
-    protected static ?string $navigationGroup = 'Contratos';
+    protected static ?string $navigationGroup = 'Gestión Comercial';
     protected static ?string $navigationLabel = 'Contratos';
-    # protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $recordTitleAttribute = 'contract_number';
     protected static ?string $modelLabel = 'contrato';
@@ -175,7 +170,7 @@ class ContractResource extends Resource
                     ->label('Estado')
                     ->searchable()
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'VIGENTE' => 'success',
                         'EN PROCESO' => 'warning',
                         'FINALIZADO' => 'danger'

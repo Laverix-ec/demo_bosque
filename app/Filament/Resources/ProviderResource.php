@@ -10,15 +10,22 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProviderResource extends Resource
 {
     protected static ?string $model = Provider::class;
 
     protected static ?string $navigationGroup = 'Configuración';
-    #protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 3;
+    protected static ?string $navigationLabel = 'Proveedores';
+    protected static ?string $recordTitleAttribute = 'ruc';
+    protected static ?string $modelLabel = 'proveedor';
+    protected static ?string $pluralModelLabel = 'proveedores';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Form $form): Form
     {
@@ -49,29 +56,25 @@ class ProviderResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('commercial_name')
+                    ->label('Nombre Comercial')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('ruc')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('legal_name')
+                    ->label('Razón Social')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('contact_name')
+                    ->label('Nombre Contacto')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('contact_email')
+                    ->label('Correo Contacto')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->label(''),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

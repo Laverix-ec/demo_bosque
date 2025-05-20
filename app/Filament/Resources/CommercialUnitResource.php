@@ -18,17 +18,14 @@ use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CommercialUnitResource extends Resource
 {
     protected static ?string $model = CommercialUnit::class;
 
-    protected static ?string $navigationGroup = 'Administración';
+    protected static ?string $navigationGroup = 'Gestión Comercial';
 
     protected static ?string $navigationLabel = 'Locales Comerciales';
-    # protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $recordTitleAttribute = 'local_code';
     protected static ?string $modelLabel = 'Local';
@@ -223,7 +220,7 @@ class CommercialUnitResource extends Resource
                         Section::make('Imágen')
                             ->schema([
                                 SpatieMediaLibraryImageEntry::make('image')->label('')
-                                ->height("18rem")
+                                    ->height("18rem")
                             ])
 
                     ]),

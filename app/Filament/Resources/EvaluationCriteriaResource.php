@@ -10,24 +10,33 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class EvaluationCriteriaResource extends Resource
 {
     protected static ?string $model = EvaluationCriteria::class;
 
     protected static ?string $navigationGroup = 'Configuración';
-    #protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 5;
+    protected static ?string $navigationLabel = 'Variables Evaluación';
+    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $modelLabel = 'variable';
+    protected static ?string $pluralModelLabel = 'variables';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nombre')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('max_score')
+                    ->label('Puntaje')
                     ->required()
                     ->numeric(),
             ]);
@@ -38,24 +47,19 @@ class EvaluationCriteriaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('max_score')
+                    ->label('Puntaje')
+                    ->summarize(Tables\Columns\Summarizers\Sum::make()->label('Total'))
                     ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->label(''),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
