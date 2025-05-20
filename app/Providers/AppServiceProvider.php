@@ -73,7 +73,7 @@ class AppServiceProvider extends ServiceProvider
         Table::configureUsing(fn(Table $table) => $table->paginationPageOptions([10, 25, 50]));
 
         FilamentAsset::register([
-            Js::make('chart-js-plugins', Vite::asset('resources/js/filament-chart-js-plugins.js'))->module(),
+            Js::make('chart-js-plugins', asset('resources/js/filament-chart-js-plugins.js'))->module(),
         ]);
     }
 }
