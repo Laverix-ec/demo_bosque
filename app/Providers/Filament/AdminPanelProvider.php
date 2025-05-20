@@ -87,6 +87,8 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label(fn (): string => 'Seguridad')
                     ->icon('heroicon-o-shield-check'),
-            ]);
+            ])
+            ->databaseNotifications()
+            ->databaseNotificationsPolling(10);
     }
 }
