@@ -8,6 +8,8 @@ php /home/site/wwwroot/artisan migrate --force
 
 php /home/site/wwwroot/artisan storage:link
 
+php /home/site/wwwroot/artisan queue:restart
+
 # Optimize
 php /home/site/wwwroot/artisan optimize
 php /home/site/wwwroot/artisan filament:optimize
