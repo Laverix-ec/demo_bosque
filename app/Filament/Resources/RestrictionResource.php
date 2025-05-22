@@ -47,14 +47,15 @@ class RestrictionResource extends Resource
                     ])
                     ->default('General')
                     ->required(),
-                Forms\Components\Select::make('status')
+                Forms\Components\Radio::make('status')
                     ->label('Estado')
+                    ->default('Activo')
+                    ->inline()
+                    ->inlineLabel(false)
                     ->options([
                         'Activo' => 'Activo',
                         'Inactivo' => 'Inactivo'
-                    ])
-                    ->default('Activo')
-                    ->required(),
+                    ]),
             ]);
     }
 

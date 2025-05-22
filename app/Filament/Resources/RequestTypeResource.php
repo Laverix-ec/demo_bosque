@@ -36,14 +36,15 @@ class RequestTypeResource extends Resource
                 Forms\Components\TextInput::make('code')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Select::make('status')
+                Forms\Components\Radio::make('status')
                     ->label('Estado')
+                    ->default('Activo')
+                    ->inline()
+                    ->inlineLabel(false)
                     ->options([
                         'Activo' => 'Activo',
                         'Inactivo' => 'Inactivo'
-                    ])
-                    ->default('Activo')
-                    ->required(),
+                    ]),
             ]);
     }
 

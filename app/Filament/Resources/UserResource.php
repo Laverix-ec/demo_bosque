@@ -30,24 +30,28 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label('Nombre')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->label('Correo')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('password')
-                    ->label('Contraseña')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('roles')
-                    ->preload()
-                    ->multiple()
-                    ->relationship(titleAttribute: 'name')
+                Forms\Components\Section::make()
+                    ->columns(3)
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->label('Nombre')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('email')
+                            ->label('Correo')
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Select::make('roles')
+                            ->preload()
+                            ->multiple()
+                            ->relationship(titleAttribute: 'name'),
+                        Forms\Components\TextInput::make('password')
+                            ->label('Contraseña')
+                            ->password()
+                            ->required()
+                            ->maxLength(255),
+                    ])
             ]);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ActivityResource\Pages;
+use App\Filament\Resources\ActivityResource\RelationManagers\RestrictionsRelationManager;
 use App\Models\Activity;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -32,28 +33,31 @@ class ActivityResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label('Nombre')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('code')
-                    ->label('Código')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Toggle::make('require_approval')
-                    ->label('Aprobación Adicional')
-                    ->required(),
-                Forms\Components\Toggle::make('require_artifacts')
-                    ->label('Requiere Objetos')
-                    ->required(),
-                Forms\Components\Select::make('status')
-                    ->label('Estado')
-                    ->options([
-                        'Activo' => 'Activo',
-                        'Inactivo' => 'Inactivo'
-                    ])
-                    ->default('Activo')
-                    ->required(),
+                Forms\Components\Section::make()
+                    ->columns(3)
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->label('Nombre')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('code')
+                            ->label('Código')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Radio::make('status')
+                            ->label('Estado')
+                            ->default('Activo')
+                            ->inline()
+                            ->inlineLabel(false)
+                            ->options([
+                                'Activo' => 'Activo',
+                                'Inactivo' => 'Inactivo'
+                            ]),
+                        Forms\Components\Toggle::make('require_approval')
+                            ->label('Aprobación Adicional'),
+                        Forms\Components\Toggle::make('require_artifacts')
+                            ->label('Requiere Objetos'),
+                    ]),
             ]);
     }
 
@@ -78,7 +82,7 @@ class ActivityResource extends Resource
                 Tables\Columns\TextColumn::make('status')
                     ->label('Estado')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'Activo' => 'success',
                         'Inactivo' => 'danger'
                     })
@@ -98,10 +102,19 @@ class ActivityResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            RestrictionsRelationManager::class
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageActivities::route('/'),
+            'index' => Pages\ListActivities::route('/'),
+            'create' => Pages\CreateActivity::route('/create'),
+            'edit' => Pages\EditActivity::route('/{record}/edit'),
         ];
     }
 }

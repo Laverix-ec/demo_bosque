@@ -58,7 +58,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('activity_restrictions', function (Blueprint $table) {
+        Schema::create('activity_restriction', function (Blueprint $table) {
             $table->id();
             $table->foreignId('activity_id')->constrained('activities');
             $table->foreignId('restriction_id')->constrained('restrictions');
