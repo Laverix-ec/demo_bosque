@@ -50,16 +50,16 @@ class PulseDashboard extends \Filament\Pages\Dashboard
         return [
             ActionGroup::make([
                 Action::make('1h')
-                    ->action(fn() => $this->redirect(route('filament.manager.pages.dashboard'))),
+                    ->action(fn() => $this->redirect(self::getUrl())),
                 Action::make('24h')
-                    ->action(fn() => $this->redirect(route('filament.manager.pages.dashboard', ['period' => '24_hours']))),
+                    ->action(fn() => $this->redirect(self::getUrl(['period' => '24_hours']))),
                 Action::make('7d')
-                    ->action(fn() => $this->redirect(route('filament.manager.pages.dashboard', ['period' => '7_days']))),
+                    ->action(fn() => $this->redirect(self::getUrl(['period' => '7_days']))),
             ])
                 ->label(__('Filtros'))
                 ->icon('heroicon-m-funnel')
                 ->size(ActionSize::Small)
-                ->color('gray')
+                ->color('primary')
                 ->button()
         ];
     }
