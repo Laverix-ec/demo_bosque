@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Policies\ActivityPolicy;
+use App\Policies\ActivityLogPolicy;
 use BezhanSalleh\FilamentShield\FilamentShield;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Tables\Table;
@@ -18,7 +18,7 @@ use Filament\Support\Assets\Js;
 class AppServiceProvider extends ServiceProvider
 {
     protected array $policies = [
-        Activity::class => ActivityPolicy::class,
+        Activity::class => ActivityLogPolicy::class,
     ];
 
     public function register(): void

@@ -101,7 +101,7 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-s-cpu-chip'),
             ])
             ->databaseNotifications()
-            ->databaseNotificationsPolling(10)
+            ->databaseNotificationsPolling(60)
             ->brandName('CC El Bosque')
             ->brandLogo(fn () => view('vendor.filament.components.brand'))
             ->topNavigation();
