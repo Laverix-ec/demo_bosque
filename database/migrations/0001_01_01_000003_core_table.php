@@ -8,6 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
+        Schema::create('contacts', function (Blueprint $table) {
+            $table->id();
+            $table->string('type');
+            $table->string('value');
+            $table->morphs('contactable');
+            $table->timestamps();
+        });
+
+
+
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
             $table->string('commercial_name');
@@ -37,6 +47,8 @@ return new class extends Migration
             $table->string('zone');
             $table->string('name');
             $table->string('local_code');
+            $table->string('status');
+            $table->boolean('is_island')->default(false)->nullable();
             $table->foreignId('category_id')->nullable()->constrained('commercial_categories');
             $table->string('ruc', 13)->nullable();
             $table->string('property_code')->nullable();

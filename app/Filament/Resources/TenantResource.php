@@ -15,7 +15,7 @@ class TenantResource extends Resource
 {
     protected static ?string $model = Tenant::class;
 
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static ?string $navigationGroup = 'Parametrización';
     protected static ?int $navigationSort = 4;
 
     protected static ?string $navigationLabel = 'Propietarios';
@@ -66,8 +66,8 @@ class TenantResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->label(''),
+                Tables\Actions\EditAction::make()->label(''),
+                Tables\Actions\DeleteAction::make()->label(''),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -86,9 +86,7 @@ class TenantResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTenants::route('/'),
-            'create' => Pages\CreateTenant::route('/create'),
-            'edit' => Pages\EditTenant::route('/{record}/edit'),
+            'index' => Pages\ManageTenants::route('/'),
         ];
     }
 }

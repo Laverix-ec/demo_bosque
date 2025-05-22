@@ -15,7 +15,7 @@ class CommercialCategoryResource extends Resource
 {
     protected static ?string $model = CommercialCategory::class;
 
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static ?string $navigationGroup = 'Parametrización';
     protected static ?int $navigationSort = 2;
     protected static ?string $navigationLabel = 'Categorías Comerciales';
     protected static ?string $recordTitleAttribute = 'name';
@@ -51,6 +51,7 @@ class CommercialCategoryResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label(''),
+                Tables\Actions\DeleteAction::make()->label(''),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -69,9 +70,7 @@ class CommercialCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCommercialCategories::route('/'),
-            'create' => Pages\CreateCommercialCategory::route('/create'),
-            'edit' => Pages\EditCommercialCategory::route('/{record}/edit'),
+            'index' => Pages\ManageCommercialCategories::route('/')
         ];
     }
 }

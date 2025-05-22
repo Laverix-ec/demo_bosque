@@ -12,9 +12,9 @@ class Settings extends BaseSettings
 {
     use HasPageShield;
 
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static ?string $navigationGroup = 'Sistema';
     protected static ?string $navigationIcon = '';
-    protected static ?int $navigationSort = 9;
+    protected static ?int $navigationSort = 5;
 
     public function schema(): array|Closure
     {

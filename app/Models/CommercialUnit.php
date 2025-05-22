@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -42,5 +43,10 @@ class CommercialUnit extends Model implements HasMedia
     public function scores(): HasMany
     {
         return $this->hasMany(UnitScore::class);
+    }
+
+    public function contacts(): MorphMany
+    {
+        return $this->morphMany(Contact::class, 'contactable');
     }
 }

@@ -26,6 +26,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 use Swis\Filament\Backgrounds\FilamentBackgroundsPlugin;
+use Swis\Filament\Backgrounds\ImageProviders\MyImages;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -70,7 +71,12 @@ class AdminPanelProvider extends PanelProvider
                 FilamentShieldPlugin::make(),
                 BreezyCore::make()
                     ->myProfile(shouldRegisterUserMenu: true),
-                FilamentBackgroundsPlugin::make(),
+                FilamentBackgroundsPlugin::make()
+                    ->imageProvider(
+                        MyImages::make()
+                            ->directory('images/backgrounds')
+                    )
+                    ->showAttribution(false),
                 ThemesPlugin::make(),
             ])
             ->authMiddleware([
@@ -82,13 +88,22 @@ class AdminPanelProvider extends PanelProvider
                     ->label(fn (): string => 'Gestión Comercial')
                     ->icon('heroicon-o-sparkles'),
                 NavigationGroup::make()
-                    ->label(fn (): string => 'Configuración')
+                    ->label(fn (): string => 'ASA')
+                    ->icon('heroicon-s-adjustments-horizontal'),
+                NavigationGroup::make()
+                    ->label(fn (): string => 'Parametrización')
                     ->icon('heroicon-o-cog-6-tooth'),
                 NavigationGroup::make()
                     ->label(fn (): string => 'Seguridad')
                     ->icon('heroicon-o-shield-check'),
+                NavigationGroup::make()
+                    ->label(fn (): string => 'Sistema')
+                    ->icon('heroicon-s-cpu-chip'),
             ])
             ->databaseNotifications()
-            ->databaseNotificationsPolling(10);
+            ->databaseNotificationsPolling(10)
+            ->brandName('CC El Bosque')
+            ->brandLogo(fn () => view('vendor.filament.components.brand'))
+            ->topNavigation();
     }
 }

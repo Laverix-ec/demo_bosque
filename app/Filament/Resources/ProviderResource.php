@@ -15,7 +15,7 @@ class ProviderResource extends Resource
 {
     protected static ?string $model = Provider::class;
 
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static ?string $navigationGroup = 'Parametrización';
     protected static ?int $navigationSort = 3;
     protected static ?string $navigationLabel = 'Proveedores';
     protected static ?string $recordTitleAttribute = 'ruc';

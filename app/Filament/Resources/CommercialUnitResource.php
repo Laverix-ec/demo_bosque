@@ -119,7 +119,31 @@ class CommercialUnitResource extends Resource
                                     ])
 
                             ]),
+                        Forms\Components\Tabs\Tab::make('Contactos')
+                            ->schema([
+                                Forms\Components\Repeater::make('contacts')
+                                    ->label('Contactos')
+                                    ->relationship()
+                                    ->schema([
+                                        Forms\Components\Select::make('type')
+                                            ->label('Tipo')
+                                            ->options([
+                                                'MOVIL' => 'MOVIL',
+                                                'HOGAR' => 'HOGAR',
+                                                'EMAIL' => 'EMAIL',
+                                            ])
+                                            ->disableOptionsWhenSelectedInSiblingRepeaterItems()
+                                            ->required(),
+                                        Forms\Components\TextInput::make('value')
+                                            ->label('Valor')
+                                            ->required()
+                                            ->live(onBlur: true),
+                                    ])
+                                    ->columns(2)
+                                    ->itemLabel(fn (array $state): ?string => $state['value'] ?? null),
+                            ]),
                     ]),
+
             ]);
     }
 

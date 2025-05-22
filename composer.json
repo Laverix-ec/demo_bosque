@@ -14,11 +14,13 @@
     "require": {
         "php": "^8.2",
         "bezhansalleh/filament-shield": "^3.3",
+        "dotswan/filament-laravel-pulse": "^1.1",
         "filament/filament": "^3.2",
         "filament/spatie-laravel-media-library-plugin": "^3.3",
         "hasnayeen/themes": "^3.0.24",
         "jeffgreco13/filament-breezy": "^2.6",
         "laravel/framework": "^12.0",
+        "laravel/pulse": "^1.4",
         "laravel/tinker": "^2.10.1",
         "maatwebsite/excel": "^3.1",
         "outerweb/filament-settings": "^1.3",

@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'nav.group' => 'Configuración',
+    'nav.group' => 'Parametrización',
     'nav.log.label' => 'Bitácora',
     'nav.log.icon' => '',
     'resource.label.log' => 'Registro de actividad',

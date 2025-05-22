@@ -15,7 +15,7 @@ class DepartmentResource extends Resource
 {
     protected static ?string $model = Department::class;
 
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static ?string $navigationGroup = 'Parametrización';
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationLabel = 'Departamentos';
     protected static ?string $recordTitleAttribute = 'name';
@@ -51,6 +51,7 @@ class DepartmentResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label(''),
+                Tables\Actions\DeleteAction::make()->label(''),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -69,9 +70,7 @@ class DepartmentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDepartments::route('/'),
-            'create' => Pages\CreateDepartment::route('/create'),
-            'edit' => Pages\EditDepartment::route('/{record}/edit'),
+            'index' => Pages\ManageDepartments::route('/')
         ];
     }
 }

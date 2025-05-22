@@ -17,19 +17,19 @@ class StatsOverview extends BaseWidget
             Stat::make('Usuarios', User::query()->count())
                 ->description('Total')
                 ->descriptionIcon('heroicon-o-rectangle-stack')
-                ->color('info'),
+                ->color('primary'),
             Stat::make('Contratos', Contract::query()->count())
                 ->description('Total')
                 ->descriptionIcon('heroicon-o-rectangle-stack')
-                ->color('info'),
+                ->color('primary'),
             Stat::make('Locales Comerciales', CommercialUnit::query()->count())
                 ->description('Total')
                 ->descriptionIcon('heroicon-o-rectangle-stack')
-                ->color('info'),
+                ->color('primary'),
             Stat::make('Proveedores', Provider::query()->count())
                 ->description('Total')
                 ->descriptionIcon('heroicon-o-rectangle-stack')
-                ->color('info'),
+                ->color('primary'),
         ];
     }
 }

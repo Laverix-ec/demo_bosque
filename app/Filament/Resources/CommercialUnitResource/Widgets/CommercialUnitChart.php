@@ -13,6 +13,22 @@ class CommercialUnitChart extends ChartWidget
 
     public ?Model $record = null;
 
+    protected function getOptions(): array
+    {
+        return [
+            'plugins' => [
+                'datalabels' => [
+                    'anchor' => 'start',
+                    'align' => 'start',
+                    'color' => 'white',
+                    'font' => [
+                        'weight' => 'bold',
+                    ],
+                ],
+            ],
+        ];
+    }
+
     protected function getData(): array
     {
 

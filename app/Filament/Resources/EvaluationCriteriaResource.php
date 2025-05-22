@@ -15,7 +15,7 @@ class EvaluationCriteriaResource extends Resource
 {
     protected static ?string $model = EvaluationCriteria::class;
 
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static ?string $navigationGroup = 'Parametrización';
     protected static ?int $navigationSort = 5;
     protected static ?string $navigationLabel = 'Variables Evaluación';
     protected static ?string $recordTitleAttribute = 'name';
@@ -60,6 +60,7 @@ class EvaluationCriteriaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label(''),
+                Tables\Actions\DeleteAction::make()->label(''),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -78,9 +79,7 @@ class EvaluationCriteriaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEvaluationCriterias::route('/'),
-            'create' => Pages\CreateEvaluationCriteria::route('/create'),
-            'edit' => Pages\EditEvaluationCriteria::route('/{record}/edit'),
+            'index' => Pages\ManageEvaluationCriteria::route('/')
         ];
     }
 }

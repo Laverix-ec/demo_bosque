@@ -37,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
         $this->configureModels();
 
         $this->configureFilament();
+
+        Vite::macro('image', fn (string $asset) => $this->asset("resources/images/{$asset}"));
     }
 
     private function configureHttpsRequests()

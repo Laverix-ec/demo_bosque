@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+import laravel, { refreshPaths } from 'laravel-vite-plugin'
 
 export default defineConfig({
     plugins: [
@@ -10,7 +10,13 @@ export default defineConfig({
                 'resources/js/filament-chart-js-plugins.js',
                 'resources/css/filament/admin/theme.css'
             ],
-            refresh: true,
+            refresh: [
+                ...refreshPaths,
+                'app/Filament/**',
+                'app/Forms/Components/**',
+                'app/Livewire/**',
+                'app/Providers/Filament/**'
+            ],
         }),
     ],
 });
