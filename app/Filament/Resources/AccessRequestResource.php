@@ -118,6 +118,10 @@ class AccessRequestResource extends Resource
                     ->label('Local')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\IconColumn::make('is_done')
+                    ->label('Realizada')
+                    ->alignCenter()
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Fecha Ingreso')
                     ->dateTime()
@@ -176,11 +180,10 @@ class AccessRequestResource extends Resource
                 Tables\Filters\SelectFilter::make('status')
                     ->label('Estado')
                     ->options([
-                        'draft' => 'Draft',
-                        'reviewing' => 'Reviewing',
-                        'published' => 'Published',
-                    ])
-                    ->attribute('status_id'),
+                        'Ingresada' => 'Ingresada',
+                        'Aprobada' => 'Aprobada',
+                        'Cancelada' => 'Cancelada',
+                    ]),
                 Tables\Filters\Filter::make('created_at')
                     ->form([
                         Forms\Components\DatePicker::make('created_from')
