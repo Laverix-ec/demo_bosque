@@ -6,10 +6,12 @@ use App\Models\Contract;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
-class ContactStatsOverview extends BaseWidget
+class ContractStatsOverview extends BaseWidget
 {
 
     protected static ?int $sort = 3;
+
+    protected static ?string $pollingInterval = null;
 
     protected int|string|array $columnSpan = 1;
 

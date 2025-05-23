@@ -2,8 +2,9 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Widgets\ContactStatsOverview;
+use App\Filament\Widgets\ContractStatsOverview;
 use App\Filament\Widgets\ContractsChart;
+use App\Filament\Widgets\RequestsCurrentMonthChart;
 use App\Filament\Widgets\StatsOverview;
 use Filament\Http\Middleware\Authenticate;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
@@ -52,7 +53,8 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 StatsOverview::class,
                 ContractsChart::class,
-                ContactStatsOverview::class
+                ContractStatsOverview::class,
+                RequestsCurrentMonthChart::class
             ])
             ->middleware([
                 EncryptCookies::class,
