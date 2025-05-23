@@ -24,37 +24,32 @@ class ArtifactsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\Section::make()
-                    ->columns(2)
-                    ->schema([
-                        Forms\Components\ToggleButtons::make('type')
-                            ->label('Tipo Movimiento')
-                            ->inline()
-                            ->grouped()
-                            ->options([
-                                'Ingreso' => 'Ingreso',
-                                'Salida' => 'Salida'
-                            ])
-                            ->required(),
-                        Forms\Components\TextInput::make('quantity')
-                            ->label('Cantidad')
-                            ->required()
-                            ->numeric(),
-                        Forms\Components\TextInput::make('location')
-                            ->label('Ubicación'),
-                        Forms\Components\TextInput::make('description')
-                            ->label('Observaciones'),
+                Forms\Components\ToggleButtons::make('type')
+                    ->label('Tipo Movimiento')
+                    ->inline()
+                    ->grouped()
+                    ->options([
+                        'Ingreso' => 'Ingreso',
+                        'Salida' => 'Salida'
                     ])
+                    ->required(),
+                Forms\Components\TextInput::make('quantity')
+                    ->label('Cantidad')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('location')
+                    ->label('Ubicación'),
+                Forms\Components\TextInput::make('description')
+                    ->label('Observaciones'),
             ]);
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('id')
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                ->label('Objeto'),
+                    ->label('Objeto'),
                 Tables\Columns\TextColumn::make('type')
                     ->label('Tipo Movimiento'),
                 Tables\Columns\TextColumn::make('quantity')
@@ -99,7 +94,7 @@ class ArtifactsRelationManager extends RelationManager
                                     ->label('Ubicación'),
                                 Forms\Components\TextInput::make('description')
                                     ->label('Observaciones')
-                                ->columnSpanFull(),
+                                    ->columnSpanFull(),
                             ])
                     ])
             ])

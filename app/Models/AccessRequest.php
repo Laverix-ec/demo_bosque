@@ -40,4 +40,9 @@ class AccessRequest extends Model
         return $this->belongsToMany(Artifact::class)
             ->withPivot(['type', 'quantity', 'location', 'description'])->withTimestamps();
     }
+
+    public function accessRequestSchedules(): HasMany
+    {
+        return $this->hasMany(AccessRequestSchedule::class);
+    }
 }

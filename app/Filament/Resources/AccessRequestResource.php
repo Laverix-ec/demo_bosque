@@ -229,7 +229,8 @@ class AccessRequestResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\ArtifactsRelationManager::class
+            RelationManagers\ArtifactsRelationManager::class,
+            RelationManagers\AccessRequestSchedulesRelationManager::class
         ];
     }
 

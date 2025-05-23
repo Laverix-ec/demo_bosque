@@ -103,6 +103,8 @@ return new class extends Migration
             $table->date('end_date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->integer('number_persons')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
 
