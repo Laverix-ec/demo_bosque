@@ -85,9 +85,9 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('access_request_artifacts', function (Blueprint $table) {
+        Schema::create('access_request_artifact', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('request_id')->constrained('access_requests');
+            $table->foreignId('access_request_id')->constrained('access_requests');
             $table->foreignId('artifact_id')->constrained('artifacts');
             $table->string('type');
             $table->integer('quantity');
@@ -111,9 +111,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists("access_request_schedules");
-        Schema::dropIfExists("access_request_artifacts");
+        Schema::dropIfExists("access_request_artifact");
         Schema::dropIfExists("access_requests");
-        Schema::dropIfExists("activity_restrictions");
+        Schema::dropIfExists("activity_restriction");
         Schema::dropIfExists("restrictions");
         Schema::dropIfExists("activities");
         Schema::dropIfExists("approval_request_types");

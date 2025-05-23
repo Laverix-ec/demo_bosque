@@ -48,8 +48,9 @@ class UserResource extends Resource
                             ->relationship(titleAttribute: 'name'),
                         Forms\Components\TextInput::make('password')
                             ->label('Contraseña')
+                            ->dehydrated(fn (?string $state): bool => filled($state))
+                            ->required(fn (string $operation): bool => $operation === 'create')
                             ->password()
-                            ->required()
                             ->maxLength(255),
                     ])
             ]);
