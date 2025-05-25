@@ -90,9 +90,6 @@ class AdminPanelProvider extends PanelProvider
                     ->label(fn (): string => 'Gestión Comercial')
                     ->icon('heroicon-o-sparkles'),
                 NavigationGroup::make()
-                    ->label(fn (): string => 'ASA')
-                    ->icon('heroicon-s-adjustments-horizontal'),
-                NavigationGroup::make()
                     ->label(fn (): string => 'Parametrización')
                     ->icon('heroicon-o-cog-6-tooth'),
                 NavigationGroup::make()

@@ -124,6 +124,7 @@ class CommercialUnitResource extends Resource
                                 Forms\Components\Repeater::make('contacts')
                                     ->label('Contactos')
                                     ->relationship()
+                                    ->defaultItems(0)
                                     ->schema([
                                         Forms\Components\Select::make('type')
                                             ->label('Tipo')
@@ -136,8 +137,8 @@ class CommercialUnitResource extends Resource
                                             ->required(),
                                         Forms\Components\TextInput::make('value')
                                             ->label('Valor')
-                                            ->required()
-                                            ->live(onBlur: true),
+                                            ->live(onBlur: true)
+                                            ->required(),
                                     ])
                                     ->columns(2)
                                     ->itemLabel(fn (array $state): ?string => $state['value'] ?? null),

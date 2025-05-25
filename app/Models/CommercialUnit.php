@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Concerns\HasContacts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +12,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class CommercialUnit extends Model implements HasMedia
 {
-    use InteractsWithMedia;
+    use InteractsWithMedia, HasContacts;
 
     protected $fillable = [
         'zone',
@@ -43,10 +44,5 @@ class CommercialUnit extends Model implements HasMedia
     public function scores(): HasMany
     {
         return $this->hasMany(UnitScore::class);
-    }
-
-    public function contacts(): MorphMany
-    {
-        return $this->morphMany(Contact::class, 'contactable');
     }
 }

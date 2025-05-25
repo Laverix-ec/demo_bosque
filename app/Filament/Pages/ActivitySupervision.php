@@ -24,7 +24,7 @@ class ActivitySupervision extends Page implements HasTable, HasForms
 {
     use InteractsWithTable, InteractsWithForms;
 
-    protected static ?string $navigationGroup = 'ASA';
+    protected static ?string $navigationGroup = 'Gestión Comercial';
 
     protected static ?string $navigationLabel = 'Supervisión Actividades';
 
